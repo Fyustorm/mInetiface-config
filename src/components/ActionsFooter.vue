@@ -1,23 +1,27 @@
 <script setup lang="ts">
-import { useAppStore } from '@/stores/app';
+import { useAppStore } from "@/stores/app";
 
 const appStore = useAppStore();
 function saveFile() {
-    appStore.writeFile();
+	appStore.writeFile();
 }
-
 </script>
 
 <template>
-    <div class="actions">
-        <v-btn icon="mdi-content-save" :disabled="!appStore.changed" @click="saveFile" color="primary"></v-btn>
-    </div>
+	<div class="actions" v-if="appStore.configLoaded">
+		<v-btn
+			icon="mdi-content-save"
+			:disabled="!appStore.changed"
+			@click="saveFile"
+			color="primary"
+		></v-btn>
+	</div>
 </template>
 
 <style scoped>
 .actions {
-    position: fixed;
-    bottom: 55px;
-    right: 15px;
+	position: fixed;
+	bottom: 15px;
+	right: 15px;
 }
 </style>

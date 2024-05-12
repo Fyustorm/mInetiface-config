@@ -1,9 +1,9 @@
 // Utilities
-import { writeTextFile } from "@tauri-apps/api/fs";
+import { readTextFile, writeTextFile } from "@tauri-apps/api/fs";
 import { defineStore } from "pinia";
 
 export const useAppStore = defineStore("app", () => {
-	const path = ref("");
+	const confPath = ref("");
 
 	const config: MinetifaceConf = reactive({
 		serverUrl: "",
@@ -39,6 +39,25 @@ export const useAppStore = defineStore("app", () => {
 
 	const savedConfig = ref({});
 
+	async function loadConfig(path: string) {
+		let contents = await readTextFile(path);
+
+		const conf = <MinetifaceConf>JSON.parse(contents);
+		if (conf === null) {
+			return;
+		}
+		
+		Object.assign(config, conf);
+		saveConfigState();
+		configLoaded.value = true;
+		confPath.value = path;
+	}
+
+	function discardConfig() {
+		confPath.value = '';
+		configLoaded.value = false;
+	}
+
 	function saveConfigState() {
 		Object.assign(savedConfig.value, config);
 	}
@@ -49,9 +68,9 @@ export const useAppStore = defineStore("app", () => {
 	});
 
 	function writeFile() {
-		writeTextFile(path.value, JSON.stringify(config, null, "\t"));
+		writeTextFile(confPath.value, JSON.stringify(config, null, "\t"));
 		saveConfigState();
-  }
+	}
 
-	return { config, configLoaded, saveConfigState, changed, path, writeFile };
+	return { config, configLoaded, saveConfigState, changed, path: confPath, writeFile, loadConfig, discardConfig };
 });

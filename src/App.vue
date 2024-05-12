@@ -15,7 +15,6 @@
 		</v-main>
 
 		<OverlayActivator />
-		<AppFooter />
 	</v-app>
 </template>
 

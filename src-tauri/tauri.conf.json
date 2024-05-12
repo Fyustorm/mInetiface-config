@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "minetiface",
-    "version": "0.0.1"
+    "version": "0.0.2"
   },
   "tauri": {
     "updater": {
@@ -67,7 +67,7 @@
     "windows": [
       {
         "label": "main",
-        "title": "Main",
+        "title": "mInetiface - Config editor",
         "width": 1400,
         "height": 800,
         "transparent": true,

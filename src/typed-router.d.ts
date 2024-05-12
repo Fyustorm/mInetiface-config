@@ -21,8 +21,10 @@ declare module 'vue-router/auto-routes' {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
     '/config/attack': RouteRecordInfo<'/config/attack', '/config/attack', Record<never, never>, Record<never, never>>,
     '/config/general': RouteRecordInfo<'/config/general', '/config/general', Record<never, never>, Record<never, never>>,
+    '/config/intiface': RouteRecordInfo<'/config/intiface', '/config/intiface', Record<never, never>, Record<never, never>>,
     '/config/masochist': RouteRecordInfo<'/config/masochist', '/config/masochist', Record<never, never>, Record<never, never>>,
     '/config/mining': RouteRecordInfo<'/config/mining', '/config/mining', Record<never, never>, Record<never, never>>,
     '/config/xp': RouteRecordInfo<'/config/xp', '/config/xp', Record<never, never>, Record<never, never>>,
+    '/shortcuts': RouteRecordInfo<'/shortcuts', '/shortcuts', Record<never, never>, Record<never, never>>,
   }
 }

@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { useAppStore } from "@/stores/app";
-import { useDisplay } from "vuetify";
 
-const { lgAndUp, mdAndDown } = useDisplay();
 const appStore = useAppStore();
 const router = useRouter();
 
-const drawer = ref(true);
 const items = [
-	{ title: "Main", icon: "mdi-cog", to: "/config/general" },
+	{ title: "Intiface", icon: "mdi-connection", to: "/config/intiface" },
+	{ title: "General", icon: "mdi-cog", to: "/config/general" },
 	{ title: "Mining", icon: "mdi-pickaxe", to: "/config/mining" },
 	{ title: "Attack", icon: "mdi-sword", to: "/config/attack" },
 	{ title: "Experience", icon: "mdi-one-up", to: "/config/xp" },
@@ -25,36 +23,47 @@ function navigate(item: { to: string }) {
 </script>
 
 <template>
-	<template v-if="appStore.configLoaded">
-		<v-app-bar v-if="mdAndDown">
-			<v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-			<v-toolbar-title>mInetiface</v-toolbar-title>
-			<!-- <v-btn density="compact" icon="mdi-theme-light-dark" @click="toggleTheme"></v-btn> -->
-		</v-app-bar>
-		<v-navigation-drawer v-model="drawer">
-			<template v-if="lgAndUp">
-				<v-list-item>
-					<v-list-item-title class="text-h6 pa-2">
-						mInetiface
-					</v-list-item-title>
+	<v-navigation-drawer absolute permanent>
+		<v-list>
+			<v-list-item prepend-avatar="@/assets/logo.png" title="mInetiface">
+			</v-list-item>
+		</v-list>
+		<v-divider></v-divider>
+		<v-list nav>
+			<v-list-item
+				@click="navigate({ to: '/' })"
+				:active="router.currentRoute.value.path === '/'"
+			>
+				<v-list-item-title>Config file</v-list-item-title>
+				<template v-slot:prepend>
+					<v-icon>mdi-file</v-icon>
+				</template>
+			</v-list-item>
+			<router-link
+				:to="item.to"
+				v-for="item in items"
+				custom
+				v-slot="{ isActive }"
+			>
+				<v-list-item @click="navigate(item)" :active="isActive" :disabled="!appStore.configLoaded">
+					<v-list-item-title>{{ item.title }}</v-list-item-title>
+					<template v-slot:prepend>
+						<v-icon>{{ item.icon }}</v-icon>
+					</template>
 				</v-list-item>
-				<v-divider></v-divider>
-			</template>
-			<v-list dense nav>
-				<router-link
-					:to="item.to"
-					v-for="item in items"
-					custom
-					v-slot="{ isActive }"
-				>
-					<v-list-item @click="navigate(item)" :active="isActive">
-						<v-list-item-title>{{ item.title }}</v-list-item-title>
-						<template v-slot:prepend>
-							<v-icon>{{ item.icon }}</v-icon>
-						</template>
-					</v-list-item>
-				</router-link>
-			</v-list>
-		</v-navigation-drawer>
-	</template>
+			</router-link>
+		</v-list>
+		<v-divider></v-divider>
+		<v-list nav>
+			<v-list-item
+				@click="navigate({ to: '/shortcuts' })"
+				:active="router.currentRoute.value.path === '/shortcuts'"
+			>
+				<v-list-item-title>Shortcuts</v-list-item-title>
+				<template v-slot:prepend>
+					<v-icon>mdi-keyboard</v-icon>
+				</template>
+			</v-list-item>
+		</v-list>
+	</v-navigation-drawer>
 </template>
