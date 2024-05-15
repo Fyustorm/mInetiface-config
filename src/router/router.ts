@@ -4,12 +4,14 @@ import Intiface from "@/pages/config/intiface.vue";
 import Masochist from "@/pages/config/masochist.vue";
 import Mining from "@/pages/config/mining.vue";
 import Xp from "@/pages/config/xp.vue";
-import Index from "@/pages/index.vue";
+import ConfigFile from "@/pages/config/file.vue";
+import Releases from "@/pages/releases.vue";
 import Shortcuts from "@/pages/shortcuts.vue";
 import { createMemoryHistory, createRouter } from "vue-router";
 
 const routes = [
-	{ path: "/", component: Index },
+	{ path: "/", redirect: '/releases' },
+	{ path: "/config/file", component: ConfigFile },
 	{ path: "/config/intiface", component: Intiface },
 	{ path: "/config/attack", component: Attack },
 	{ path: "/config/general", component: General },
@@ -17,6 +19,7 @@ const routes = [
 	{ path: "/config/mining", component: Mining },
 	{ path: "/config/xp", component: Xp },
 	{ path: "/shortcuts", component: Shortcuts },
+	{ path: "/releases", component: Releases },
 ];
 
 const router = createRouter({

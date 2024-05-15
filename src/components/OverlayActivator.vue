@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import { useAppStore } from "@/stores/app";
 import { useShortcutStore } from "@/stores/shortcut";
 
 const shortcutStore = useShortcutStore();
+const appStore = useAppStore();
 </script>
 
 <template>
-	<div class="overlayActions">
+	<div class="overlayActions" v-if="appStore.configLoaded">
 		<v-tooltip v-if="!shortcutStore.overlayActivated" :text="'Toggle overlay (' + shortcutStore.overlayShortcut + ')'">
 			<template v-slot:activator="{ props }">
 				<v-btn

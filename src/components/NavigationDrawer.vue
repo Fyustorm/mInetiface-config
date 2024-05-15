@@ -5,6 +5,7 @@ const appStore = useAppStore();
 const router = useRouter();
 
 const items = [
+	{ title: "Load config file", icon: "mdi-file", to: "/config/file" },
 	{ title: "Intiface", icon: "mdi-connection", to: "/config/intiface" },
 	{ title: "General", icon: "mdi-cog", to: "/config/general" },
 	{ title: "Mining", icon: "mdi-pickaxe", to: "/config/mining" },
@@ -31,21 +32,24 @@ function navigate(item: { to: string }) {
 		<v-divider></v-divider>
 		<v-list nav>
 			<v-list-item
-				@click="navigate({ to: '/' })"
-				:active="router.currentRoute.value.path === '/'"
+				@click="navigate({ to: '/releases' })"
+				:active="router.currentRoute.value.path === '/releases'"
 			>
-				<v-list-item-title>Config file</v-list-item-title>
+				<v-list-item-title>Download mod</v-list-item-title>
 				<template v-slot:prepend>
-					<v-icon>mdi-file</v-icon>
+					<v-icon>mdi-download</v-icon>
 				</template>
 			</v-list-item>
+		</v-list>
+		<v-divider></v-divider>
+		<v-list nav>
 			<router-link
 				:to="item.to"
 				v-for="item in items"
 				custom
 				v-slot="{ isActive }"
 			>
-				<v-list-item @click="navigate(item)" :active="isActive" :disabled="!appStore.configLoaded">
+				<v-list-item @click="navigate(item)" :active="isActive" :disabled="!appStore.configLoaded && item.to !== '/config/file'">
 					<v-list-item-title>{{ item.title }}</v-list-item-title>
 					<template v-slot:prepend>
 						<v-icon>{{ item.icon }}</v-icon>

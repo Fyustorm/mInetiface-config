@@ -2,13 +2,15 @@
 import { useAppStore } from "@/stores/app";
 
 const appStore = useAppStore();
+const router = useRouter();
+
 function saveFile() {
 	appStore.writeFile();
 }
 </script>
 
 <template>
-	<div class="actions" v-if="appStore.configLoaded">
+	<div class="actions" v-if="appStore.configLoaded && router.currentRoute.value.path.startsWith('/config')">
 		<v-btn
 			icon="mdi-content-save"
 			:disabled="!appStore.changed"

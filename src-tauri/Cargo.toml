@@ -1,6 +1,6 @@
 [package]
 name = "minetiface"
-version = "0.0.2"
+version = "0.0.3"
 description = "mInetiface config editor"
 authors = ["Fyustorm"]
 edition = "2021"
@@ -11,7 +11,7 @@ edition = "2021"
 tauri-build = { version = "1", features = [] }
 
 [dependencies]
-tauri = { version = "1", features = [ "updater", "system-tray", "window-set-fullscreen", "window-hide", "window-set-decorations", "window-center", "window-show", "window-set-always-on-top", "window-start-dragging", "window-set-size", "global-shortcut-all", "window-set-position", "fs-write-file", "fs-read-file", "dialog-save", "dialog-open", "shell-open"] }
+tauri = { version = "1", features = [ "http-request", "updater", "system-tray", "window-set-fullscreen", "window-hide", "window-set-decorations", "window-center", "window-show", "window-set-always-on-top", "window-start-dragging", "window-set-size", "global-shortcut-all", "window-set-position", "fs-write-file", "fs-read-file", "dialog-save", "dialog-open", "shell-open"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 

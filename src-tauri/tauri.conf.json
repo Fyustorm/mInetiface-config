@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "minetiface",
-    "version": "0.0.2"
+    "version": "0.0.3"
   },
   "tauri": {
     "updater": {
@@ -58,6 +58,11 @@
       },
       "globalShortcut": {
         "all": true
+      },
+      "http": {
+        "all": false,
+        "request": true,
+        "scope": ["https://api.github.com/repos/**"]
       }
     },
     "systemTray": {
