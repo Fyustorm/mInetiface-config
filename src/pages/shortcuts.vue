@@ -6,9 +6,7 @@ const shortcutStore = useShortcutStore();
 async function initShortcut() {
 	try {
 		await shortcutStore.initShortcut();
-		console.log('Activated');
 	} catch (e) {
-		console.log(e);
 		return 'Invalid shortcut';
 	}
 	return true;

@@ -39,9 +39,9 @@ async function openConfig() {
 				</v-alert>
 				<v-btn @click="openConfig" class="mt-4">Load config file</v-btn>
 
-				<div class="field-group mt-4" v-if="appStore.path !== ''">
+				<div class="field-group mt-4" v-if="appStore.confPath !== ''">
 					<div class="text-h6">Current file</div>
-					<div class="text-body-1">{{ appStore.path }}</div>
+					<div class="text-body-1">{{ appStore.confPath }}</div>
 				</div>
 			</v-card>
 		</v-col>
