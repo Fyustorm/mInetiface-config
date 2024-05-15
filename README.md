@@ -31,7 +31,7 @@
    chmod +x minetiface_{version}.AppImage
 6. Run the AppImage file to start the application:
    ```bash
-    ./minetiface_{version}.AppImage```
+    ./minetiface_{version}.AppImage
 
 ## Contributing
 If you have suggestions for improvements, feel free to open an issue or submit a pull request.
