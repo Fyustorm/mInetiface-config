@@ -2,9 +2,12 @@
 
 **mInetiface config editor** is a Tauri application designed to help you configure and download the [mInetiface](https://github.com/Fyustorm/mInetiface) mod. This repository contains the code for the configuration tool.
 
+![GUI screenshot](doc/main.png)
+
 ## Features
 
 - User-friendly interface to download and configure the mInetiface mod.
+- Shortcut to show the config editor in-game (for fullscreen it only works in borderless).
 
 ## Installation
 
