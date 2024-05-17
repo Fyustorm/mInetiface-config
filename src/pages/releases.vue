@@ -87,7 +87,6 @@ const headers = [
 	},
 ];
 
-console.log(releasesStore.releases);
 </script>
 
 <template>

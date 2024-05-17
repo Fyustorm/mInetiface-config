@@ -3,6 +3,7 @@ import { isRegistered, register, unregister } from "@tauri-apps/api/globalShortc
 import { WebviewWindow } from "@tauri-apps/api/window";
 import { defineStore } from "pinia";
 import { useAppStore } from "./app";
+import { isTauri } from "@/tauri/tauri";
 
 export const useShortcutStore = defineStore(
 	"shortcut",
@@ -10,10 +11,11 @@ export const useShortcutStore = defineStore(
 		const overlayShortcut = ref("Ctrl+F12");
 		const lastOverlayShortcut = ref("");
 		const overlayActivated = ref(false);
-		const mainWindow = WebviewWindow.getByLabel("main");
 		const appStore = useAppStore();
 
 		async function initShortcut() {
+			const mainWindow = WebviewWindow.getByLabel("main");
+
 			if (await isRegistered(overlayShortcut.value)) {
 				await unregister(overlayShortcut.value);
 			}
@@ -34,6 +36,8 @@ export const useShortcutStore = defineStore(
 		}
 
 		async function showOverlay() {
+			const mainWindow = WebviewWindow.getByLabel("main");
+
 			if (mainWindow === null) {
 				return;
 			}
@@ -50,6 +54,8 @@ export const useShortcutStore = defineStore(
 		}
 
 		async function disableOverlay() {
+			const mainWindow = WebviewWindow.getByLabel("main");
+
 			if (mainWindow === null) {
 				return;
 			}
@@ -64,6 +70,8 @@ export const useShortcutStore = defineStore(
 		}
 
 		function hideWindow() {
+			const mainWindow = WebviewWindow.getByLabel("main");
+
 			if (mainWindow === null) {
 				return;
 			}
@@ -79,7 +87,9 @@ export const useShortcutStore = defineStore(
 			return root;
 		}
 
-		initShortcut();
+		if (isTauri()) {
+			initShortcut();
+		}
 
 		return { overlayShortcut, hideWindow, showOverlay, initShortcut, disableOverlay, overlayActivated };
 	},

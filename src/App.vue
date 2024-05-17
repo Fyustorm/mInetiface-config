@@ -10,14 +10,16 @@
 					</transition>
 				</router-view>
 
-				<ActionsFooter />
+				<ActionsFooter v-if="isTauri()" />
 			</v-container>
 		</v-main>
 
-		<OverlayActivator />
+		<OverlayActivator v-if="isTauri()" /> 
 	</v-app>
 </template>
 
 <script lang="ts" setup>
+import { isTauri } from './tauri/tauri';
+
 
 </script>

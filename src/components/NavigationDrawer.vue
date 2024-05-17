@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useAppStore } from "@/stores/app";
+import { isTauri } from "@/tauri/tauri";
 
 const appStore = useAppStore();
-const router = useRouter();
 
 const items = [
 	{ title: "Load config file", icon: "mdi-file", to: "/config/file" },
@@ -17,10 +17,6 @@ const items = [
 		to: "/config/masochist",
 	},
 ];
-
-function navigate(item: { to: string }) {
-	router.push(item.to);
-}
 </script>
 
 <template>
@@ -31,10 +27,7 @@ function navigate(item: { to: string }) {
 		</v-list>
 		<v-divider></v-divider>
 		<v-list nav>
-			<v-list-item
-				@click="navigate({ to: '/releases' })"
-				:active="router.currentRoute.value.path === '/releases'"
-			>
+			<v-list-item :to="'/releases'">
 				<v-list-item-title>Download mod</v-list-item-title>
 				<template v-slot:prepend>
 					<v-icon>mdi-download</v-icon>
@@ -43,31 +36,29 @@ function navigate(item: { to: string }) {
 		</v-list>
 		<v-divider></v-divider>
 		<v-list nav>
-			<router-link
-				:to="item.to"
-				v-for="item in items"
-				custom
-				v-slot="{ isActive }"
-			>
-				<v-list-item @click="navigate(item)" :active="isActive" :disabled="!appStore.configLoaded && item.to !== '/config/file'">
-					<v-list-item-title>{{ item.title }}</v-list-item-title>
-					<template v-slot:prepend>
-						<v-icon>{{ item.icon }}</v-icon>
-					</template>
-				</v-list-item>
-			</router-link>
-		</v-list>
-		<v-divider></v-divider>
-		<v-list nav>
 			<v-list-item
-				@click="navigate({ to: '/shortcuts' })"
-				:active="router.currentRoute.value.path === '/shortcuts'"
+				v-for="item in items"
+				:to="item.to"
+				:disabled="!appStore.configLoaded && item.to !== '/config/file'"
 			>
-				<v-list-item-title>Shortcuts</v-list-item-title>
+				<v-list-item-title>{{ item.title }}</v-list-item-title>
 				<template v-slot:prepend>
-					<v-icon>mdi-keyboard</v-icon>
+					<v-icon>{{ item.icon }}</v-icon>
 				</template>
 			</v-list-item>
 		</v-list>
+		<template v-if="isTauri()">
+			<v-divider></v-divider>
+			<v-list nav>
+				<v-list-item
+					:to="'/shortcuts'"
+				>
+					<v-list-item-title>Shortcuts</v-list-item-title>
+					<template v-slot:prepend>
+						<v-icon>mdi-keyboard</v-icon>
+					</template>
+				</v-list-item>
+			</v-list>
+		</template>
 	</v-navigation-drawer>
 </template>

@@ -1,6 +1,6 @@
 // Utilities
 import { ReleaseDTO } from "@/releases/releaseDTO";
-import { fetch } from "@tauri-apps/api/http";
+import { fetchInterop } from "@/tauri/fetchApi";
 import { defineStore } from "pinia";
 
 export const useReleasesStore = defineStore(
@@ -9,13 +9,14 @@ export const useReleasesStore = defineStore(
 		const releases: Ref<Release[]> = ref([]);
 
 		async function loadMinetifaceReleases() {
+			console.log('Load releases');
 			releases.value.splice(0);
 
 			let page = 1;
 			let hasMore = false;
 
 			do {
-				const releasesResp = await fetch<ReleaseDTO[]>(
+				const releasesResp = await fetchInterop(
 					`https://api.github.com/repos/Fyustorm/minetiface/releases?page=${page}&per_page=100`,
 					{
 						method: "GET",
@@ -27,11 +28,7 @@ export const useReleasesStore = defineStore(
 					}
 				);
 
-				if (!releasesResp.ok) {
-					return;
-				}
-
-				const releasesDTO = releasesResp.data;
+				const releasesDTO = JSON.parse(releasesResp.text) as ReleaseDTO[];
 				for (const releaseDTO of releasesDTO) {
 					const release: Release = {
 						modVersion: releaseDTO.tag_name.split(/[-_]/)[1],

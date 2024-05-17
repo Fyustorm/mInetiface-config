@@ -1,4 +1,5 @@
 // Utilities
+import { isTauri } from "@/tauri/tauri";
 import { invoke } from "@tauri-apps/api";
 import { readTextFile, writeTextFile } from "@tauri-apps/api/fs";
 import { defineStore } from "pinia";
@@ -9,33 +10,33 @@ export const useAppStore = defineStore(
 		const confPath = ref("");
 
 		const config: MinetifaceConf = reactive({
-			serverUrl: "",
-			minimumFeedback: 0,
-			maximumFeedback: 0,
-			maximumScore: 0,
-			feedbackScoreLostPerTick: 0,
-			scoreLostPerTick: 0,
-			maximumSecondsKeepScore: 0,
-			fullMaxTime: 0,
-			fullMinTime: 0,
-			masochistEnabled: false,
-			masochistMultiplier: 0,
-			masochistInstantPointsMultiplier: 0,
-			masochistDurationMultiplier: 0,
-			xpEnabled: false,
-			xpMultiplier: 0,
-			xpInstantPointsMultiplier: 0,
-			xpDurationMultiplier: 0,
-			miningEnabled: false,
-			minePointsMultiplier: 0,
-			mineInstantPointsMultiplier: 0,
-			mineDurationMultiplier: 0,
+			serverUrl: "127.0.0.1:12345",
+			minimumFeedback: 1,
+			maximumFeedback: 30,
+			maximumScore: 80,
+			feedbackScoreLostPerTick: 2,
+			scoreLostPerTick: 0.05,
+			maximumSecondsKeepScore: 30,
+			fullMaxTime: 5000,
+			fullMinTime: 100,
+			masochistEnabled: true,
+			masochistMultiplier: 1,
+			masochistInstantPointsMultiplier: 1,
+			masochistDurationMultiplier: 1,
+			xpEnabled: true,
+			xpMultiplier: 1,
+			xpInstantPointsMultiplier: 1,
+			xpDurationMultiplier: 1,
+			miningEnabled: true,
+			minePointsMultiplier: 1,
+			mineInstantPointsMultiplier: 1,
+			mineDurationMultiplier: 1,
 			blocksScore: undefined,
-			defaultBlockScore: 0,
-			attackEnabled: false,
-			attackMultiplier: 0,
-			attackInstantPointsMultiplier: 0,
-			attackDurationMultiplier: 0,
+			defaultBlockScore: 1,
+			attackEnabled: true,
+			attackMultiplier: 1,
+			attackInstantPointsMultiplier: 1,
+			attackDurationMultiplier: 1,
 		});
 
 		const configLoaded = ref(false);
@@ -72,6 +73,10 @@ export const useAppStore = defineStore(
 		function writeFile() {
 			writeTextFile(confPath.value, JSON.stringify(config, null, "\t"));
 			saveConfigState();
+		}
+
+		if (!isTauri()) {
+			configLoaded.value = true;
 		}
 
 		return {

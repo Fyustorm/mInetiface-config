@@ -7,7 +7,7 @@ import Xp from "@/pages/config/xp.vue";
 import ConfigFile from "@/pages/config/file.vue";
 import Releases from "@/pages/releases.vue";
 import Shortcuts from "@/pages/shortcuts.vue";
-import { createMemoryHistory, createRouter } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
 	{ path: "/", redirect: '/releases' },
@@ -23,7 +23,7 @@ const routes = [
 ];
 
 const router = createRouter({
-	history: createMemoryHistory(),
+	history: createWebHistory(),
 	routes,
 });
 
