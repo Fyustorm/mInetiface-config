@@ -105,7 +105,7 @@ const headers = [
 					</v-radio-group>
 
 					<v-row>
-						<v-col>
+						<v-col class="v-col-12 v-col-md-6">
 							<v-combobox
 								clearable
 								label="Minecraft version"
@@ -113,7 +113,7 @@ const headers = [
 								v-model="mcVersionFilter"
 							></v-combobox>
 						</v-col>
-						<v-col>
+						<v-col class="v-col-12 v-col-md-6">
 							<v-combobox
 								clearable
 								label="Mod version"

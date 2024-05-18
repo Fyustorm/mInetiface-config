@@ -1,15 +1,18 @@
 <script setup lang="ts">
+import { useDisplay } from "vuetify";
 
 defineProps({
 	min: Number,
 	max: Number,
-	step: Number
+	step: Number,
 });
 
 const minValue = defineModel<number>("minValue", { required: true });
 const maxValue = defineModel<number>("maxValue", { required: true });
 
 const rangeModel: Ref<[number, number]> = ref([minValue.value, maxValue.value]);
+
+const { mobile } = useDisplay();
 
 function sliderChanged(value: [number, number]) {
 	minValue.value = value[0];
@@ -25,9 +28,14 @@ function sliderChanged(value: [number, number]) {
 		v-model="rangeModel"
 		@update:modelValue="sliderChanged"
 		hide-details
+		:thumb-label="mobile ? 'always' : false"
+		:class="mobile ? 'mt-8' : undefined"
 	>
+		<template v-slot:default>
+			<div>Hello</div>
+		</template>
 		<template v-slot:prepend>
-			<div class="d-flex flex-column justify-end align-center">
+			<div class="d-flex flex-column justify-end align-center" v-if="!mobile">
 				<v-text-field
 					v-model.number="minValue"
 					:step="step"
@@ -43,7 +51,7 @@ function sliderChanged(value: [number, number]) {
 				>
 			</div>
 		</template>
-		<template v-slot:append>
+		<template v-slot:append v-if="!mobile">
 			<v-text-field
 				v-model.number="maxValue"
 				:step="step"
