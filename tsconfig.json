@@ -23,7 +23,8 @@
         "sourceMap": true,
         "baseUrl": ".",
         "paths": {
-            "@/*": ["src/*"]
+            "@/*": ["src/*"],
+            "*": ["src/types/*"]
         }
     },
     "exclude": [
