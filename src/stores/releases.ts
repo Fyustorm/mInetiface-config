@@ -7,6 +7,7 @@ export const useReleasesStore = defineStore(
 	"releases",
 	() => {
 		const releases: Ref<Release[]> = ref([]);
+		const lastLoad: Ref<Date|null> = ref(null);
 
 		async function loadMinetifaceReleases() {
 			console.log('Load releases');
@@ -20,7 +21,6 @@ export const useReleasesStore = defineStore(
 					`https://api.github.com/repos/Fyustorm/minetiface/releases?page=${page}&per_page=100`,
 					{
 						method: "GET",
-
 						headers: {
 							"User-Agent": "Tauri",
 							"Content-Type": "application/json; charset=utf-8",
@@ -54,9 +54,11 @@ export const useReleasesStore = defineStore(
 				hasMore =  "link" in releasesResp.headers && releasesResp.headers.link.includes('rel="next"');
 				page++;
 			} while (hasMore);
+
+			lastLoad.value = new Date();
 		}
 
-		return { releases, loadMinetifaceReleases };
+		return { releases, loadMinetifaceReleases, lastLoad };
 	},
 	{ persist: true }
 );

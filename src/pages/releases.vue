@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useReleasesStore } from "@/stores/releases";
+import moment from "moment";
 import { useDate } from "vuetify";
 
 const loading = ref(false);
@@ -8,8 +9,10 @@ const modVersionFilter: Ref<string | null> = ref(null);
 const loaderTypeFilter = ref("all");
 
 const releasesStore = useReleasesStore();
+const lastLoad = moment(releasesStore.lastLoad);
+const lastHour = moment().add(-1, 'hours');
 
-if (releasesStore.releases.length === 0) {
+if (releasesStore.lastLoad === null || lastLoad < lastHour) {
 	loadReleases();
 }
 

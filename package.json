@@ -13,9 +13,11 @@
     "@mdi/font": "6.2.95",
     "@tauri-apps/api": "^1",
     "core-js": "^3.34.0",
+    "moment": "^2.30.1",
     "pinia-plugin-persistedstate": "^3.2.1",
     "roboto-fontface": "*",
     "vue": "^3.3.4",
+    "vue-matomo": "^4.2.0",
     "vuetify": "^3.6.3"
   },
   "devDependencies": {

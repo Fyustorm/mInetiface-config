@@ -17,6 +17,9 @@ importers:
       core-js:
         specifier: ^3.34.0
         version: 3.37.0
+      moment:
+        specifier: ^2.30.1
+        version: 2.30.1
       pinia-plugin-persistedstate:
         specifier: ^3.2.1
         version: 3.2.1(pinia@2.1.7(typescript@5.4.5)(vue@3.4.26(typescript@5.4.5)))
@@ -26,6 +29,9 @@ importers:
       vue:
         specifier: ^3.3.4
         version: 3.4.26(typescript@5.4.5)
+      vue-matomo:
+        specifier: ^4.2.0
+        version: 4.2.0
       vuetify:
         specifier: ^3.6.3
         version: 3.6.3(typescript@5.4.5)(vite-plugin-vuetify@2.0.3)(vue@3.4.26(typescript@5.4.5))
@@ -1316,6 +1322,9 @@ packages:
   mlly@1.7.0:
     resolution: {integrity: sha512-U9SDaXGEREBYQgfejV97coK0UL1r+qnF2SyO9A3qcI8MzKnsIFKHNVEkrDyNncQTKQQumsasmeq84eNMdBfsNQ==}
 
+  moment@2.30.1:
+    resolution: {integrity: sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==}
+
   ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
 
@@ -1762,6 +1771,10 @@ packages:
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
+
+  vue-matomo@4.2.0:
+    resolution: {integrity: sha512-m5hCw7LH3wPDcERaF4sp/ojR9sEx7Rl8TpOyH/4jjQxMF2DuY/q5pO+i9o5Dx+BXLSa9+IQ0qhAbWYRyESQXmA==}
+    engines: {node: '>= 6.0.0', npm: '>= 3.0.0'}
 
   vue-router@4.3.2:
     resolution: {integrity: sha512-hKQJ1vDAZ5LVkKEnHhmm1f9pMiWIBNGF5AwU67PdH7TyXCj/a4hTccuUuYCAMgJK6rO/NVYtQIEN3yL8CECa7Q==}
@@ -3144,6 +3157,8 @@ snapshots:
       pkg-types: 1.1.0
       ufo: 1.5.3
 
+  moment@2.30.1: {}
+
   ms@2.1.2: {}
 
   ms@2.1.3: {}
@@ -3633,6 +3648,8 @@ snapshots:
       semver: 7.6.0
     transitivePeerDependencies:
       - supports-color
+
+  vue-matomo@4.2.0: {}
 
   vue-router@4.3.2(vue@3.4.26(typescript@5.4.5)):
     dependencies:

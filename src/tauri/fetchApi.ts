@@ -1,4 +1,4 @@
-import { fetch as tauri_fetch } from "@tauri-apps/api/http";
+import { ResponseType, fetch as tauri_fetch, FetchOptions as TauriFetchOptions } from "@tauri-apps/api/http";
 import { isTauri } from "./tauri";
 
 type FetchOptions = {
@@ -17,6 +17,7 @@ async function fetchInterop(
 	options?: FetchOptions
 ): Promise<Response> {
 	if (isTauri()) {
+		console.log("Fetch tauri")
 		return fetchTauri(url, options);
 	} else {
 		return fetchWeb(url, options);
@@ -27,7 +28,18 @@ async function fetchTauri(
 	url: string,
 	options?: FetchOptions | undefined
 ): Promise<Response> {
-	const response = await tauri_fetch(url, options);
+	let tauriOptions : TauriFetchOptions = {
+		method: "GET",
+		responseType: ResponseType.Text
+	};
+
+	if (options !== undefined) {
+		tauriOptions = {
+			...tauriOptions,
+			...options
+		}
+	}
+	const response = await tauri_fetch<string>(url, tauriOptions);
 	return { text: response.data as string, headers: response.headers };
 }
 
