@@ -65,7 +65,7 @@ onMounted(() => {
 				<template v-if="!isTauri()">
 					<v-alert type="info" class="mt-2">
 						<template #text>
-							<a href="https://github.com/Fyustorm/mInetiface-config"
+							<a href="https://github.com/Cyber-Kitty/mInetiface-config"
 								><v-btn class="mr-1">Download</v-btn></a
 							>
 							<b>mInetiface config editor</b> to modify your config file

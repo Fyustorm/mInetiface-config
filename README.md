@@ -1,6 +1,6 @@
 # mInetiface config editor
 
-**mInetiface config editor** is a Tauri application designed to help you configure and download the [mInetiface](https://github.com/Fyustorm/mInetiface) mod. This repository contains the code for the configuration tool.
+**mInetiface config editor** is a Tauri application designed to help you configure and download the [mInetiface](https://github.com/Cyber-Kitty/mInetiface) mod. This repository contains the code for the configuration tool.
 
 ![GUI screenshot](doc/main.png)
 
@@ -13,7 +13,7 @@
 
 ### Windows
 
-1. Go to the [latest release](https://github.com/Fyustorm/mInetiface-config/releases/latest) page.
+1. Go to the [latest release](https://github.com/Cyber-Kitty/mInetiface-config/releases/latest) page.
 2. Download the file `minetiface_{version}_x64-setup.nsis.zip`.
 3. Extract the downloaded ZIP file.
 4. Run the `minetiface_{version}_x64-setup.exe` file to start the installation process.
@@ -21,7 +21,7 @@
 
 ### Linux
 
-1. Go to the [latest release](https://github.com/Fyustorm/mInetiface-config/releases/latest) page.
+1. Go to the [latest release](https://github.com/Cyber-Kitty/mInetiface-config/releases/latest) page.
 2. Download the file `minetiface_{version}_amd64.AppImage.tar.gz.
 3. Extract the downloaded TAR.GZ file:
     ```bash

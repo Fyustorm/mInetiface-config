@@ -1,1 +1,1 @@
-declare module 'vue-matomo';
+// Intentionally left empty.

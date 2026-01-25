@@ -1,6 +1,6 @@
 # Server build
-docker build -f .\dockerfiles\nginx.Dockerfile -t fyustorm/minetiface .
-docker save -o minetiface-image fyustorm/minetiface
+docker build -f .\dockerfiles\nginx.Dockerfile -t cyber-kitty/minetiface .
+docker save -o minetiface-image cyber-kitty/minetiface
 
 sudo docker image load < minetiface-image
 sudo docker compose up --force-recreate -d
@@ -9,4 +9,4 @@ sudo docker compose up --force-recreate -d
 
 
 # Gist tauri
-https://gist.githubusercontent.com/Fyustorm/9ed4aec29db555435001957d8f200135
+https://gist.githubusercontent.com/Cyber-Kitty/2c65fc1f0ef885578c4ccb57ca6e67f8

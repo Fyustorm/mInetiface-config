@@ -2,7 +2,7 @@
 name = "minetiface"
 version = "0.0.3"
 description = "mInetiface config editor"
-authors = ["Fyustorm"]
+authors = ["Fyustorm", "Cyber-Kitty"]
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

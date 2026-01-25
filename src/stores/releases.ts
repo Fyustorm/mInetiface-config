@@ -17,8 +17,9 @@ export const useReleasesStore = defineStore(
 			let hasMore = false;
 
 			do {
+				// Update the API endpoint to point to the new repository
 				const releasesResp = await fetchInterop(
-					`https://api.github.com/repos/Fyustorm/minetiface/releases?page=${page}&per_page=100`,
+					`https://api.github.com/repos/Cyber-Kitty/minetiface/releases?page=${page}&per_page=100`,
 					{
 						method: "GET",
 						headers: {
